@@ -1,0 +1,28 @@
+[
+	{
+		"id": 1,
+		"title": "Microservices Artefact Observatory",
+		"description": "The original MAO community. Quality metrics on software artefacts.",
+		"icon": "img/icon/so.png",
+		"access": "public"
+	},
+	{
+		"id": 2,
+		"title": "Civic Engagement",
+		"description": "Metrics related to damage reporting in smart cities.",
+		"icon": "img/icon/so.png",
+		"access": "public"
+	},
+	{
+		"id": 3,
+		"title": "Finance",
+		"description": "Currency exchange rates and similar financial metrics.",
+		"icon": "img/icon/so.png",
+		"access": "public",
+		"provider_name": "Josef Spillner",
+		"provider_www": "mailto:spio@zhaw.ch",
+		"dev_details": true,
+		"location": "CH",
+		"end_points": ["ep1", "ep2", "ep3"]
+	}
+]

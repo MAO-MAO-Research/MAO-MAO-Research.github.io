@@ -1,0 +1,16 @@
+[
+	{
+		"id": 1,
+		"title": "Dockerfiles",
+		"description": "Assess local Dockerfiles",
+		"icon": "img/icon/class.png",
+		"access": "public"
+	},
+	{
+		"id": 2,
+		"title": "Artifact Hub",
+		"description": "Acquire and assess Helm charts, Kubernetes operators and other artefacts from the AH",
+		"icon": "img/icon/class.png",
+		"access": "public"
+	}
+]
