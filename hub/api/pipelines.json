@@ -1,16 +1,160 @@
-{
-    "pipelines": {
-        "testbench": {
-            "tool": "testbench",
-            "dataset": "bench",
-            "branch": "sonap",
-            "local_dir": "/home/panos/testconfig/testbench"
-        },
-        "benchtest": {
-            "tool": "benchtest",
-            "dataset": "bench",
-            "branch": "sonap",
-            "local_dir": "/home/panos/testconfig/benchtest"
-        }
+[
+    {
+        "name": "demo-pipeline-1",
+        "description": "Runs the Skan tool for demoing purposes",
+        "steps": [{
+                "name": "acquisition",
+                "tool": "busybox",
+                "env": {
+                    "DEMO_TOOL_ENV": "{{ MAO_PRIVATE_VARIABLE }}"
+                },
+                "cmd": [
+                    "sh",
+                    "-c",
+                    "wget https://github.com/argoproj/argo-cd/archive/refs/heads/master.zip && unzip master.zip -d /usr/src/app/data"
+                ],
+                "docker_socket": false,
+                "input_dataset": null,
+                "output_dataset": "mao-demo-dataset"
+            },
+            {
+                "name": "assessment",
+                "tool": "skan",
+                "env": {
+                    "DEMO_TOOL_ENV": "foo.bar.env"
+                },
+                "cmd": [
+                    "manifest",
+                    "-f",
+                    "/usr/src/app/input/argo-cd-master",
+                    "-o",
+                    "json",
+                    "--outputfile",
+                    "/usr/src/app/data/output_argo.json"
+                ],
+                "docker_socket": false,
+                "input_dataset": "mao-demo-dataset",
+                "output_dataset": "mao-demo2-dataset"
+            }
+        ]
+    },
+    {
+        "name": "broken-pipeline-1",
+        "description": "Runs the Skan tool for demoing purposes",
+        "steps": [{
+                "name": "acquisition",
+                "tool": "demo-pipeline-init",
+                "env": {
+                    "DEMO_TOOL_ENV": "{{ MAO_PRIVATE_VARIABLE }}",
+                    "DEMO_TOOL_ENV_NON_PRIVATE": "foo.bar"
+                },
+                "cmd": [
+                    "sh",
+                    "-c",
+                    "wget https://github.com/argoproj/argo-cd/archive/refs/heads/master.zip && unzip master.zip -d /usr/src/app/data"
+                ],
+                "docker_socket": false,
+                "input_dataset": null,
+                "output_dataset": "mao-demo-dataset"
+            },
+            {
+                "name": "assessment",
+                "tool": "skan",
+                "env": {
+                    "DEMO_TOOL_ENV": "foo.bar.env"
+                },
+                "cmd": [
+                    "manifest",
+                    "-f",
+                    "/usr/src/app/input/argo-cd-master",
+                    "-o",
+                    "json",
+                    "--outputfile",
+                    "/usr/src/app/data/output_argo.json"
+                ],
+                "docker_socket": false,
+                "input_dataset": "mao-demo-dataset",
+                "output_dataset": "mao-demo2-dataset"
+            }
+        ]
+    },
+    {
+        "name": "marketplace-pipe-1",
+        "description": "Runs the marketplace-pipe-1 tool for demoing purposes",
+        "steps": [{
+                "name": "acquisition",
+                "tool": "demo-pipeline-init",
+                "env": {
+                    "DEMO_TOOL_ENV": "foo.bar.env"
+                },
+                "cmd": [
+                    "sh",
+                    "-c",
+                    "wget https://github.com/argoproj/argo-cd/archive/refs/heads/master.zip && unzip master.zip -d /usr/src/app/data"
+                ],
+                "docker_socket": false,
+                "input_dataset": null,
+                "output_dataset": "mao-demo-dataset"
+            },
+            {
+                "name": "assessment",
+                "tool": "skan",
+                "env": {
+                    "DEMO_TOOL_ENV": "foo.bar.env"
+                },
+                "cmd": [
+                    "manifest",
+                    "-f",
+                    "/usr/src/app/input/argo-cd-master",
+                    "-o",
+                    "json",
+                    "--outputfile",
+                    "/usr/src/app/data/output_argo.json"
+                ],
+                "docker_socket": false,
+                "input_dataset": "mao-demo-dataset",
+                "output_dataset": "mao-demo2-dataset"
+            }
+        ]
+    },
+    {
+        "name": "marketplace-pipe-bad-1",
+        "description": "Runs the marketplace-pipe-1 tool for demoing purposes",
+        "steps": [{
+                "name": "acquisition",
+                "tool": "demo-pipeline-init",
+                "env": {
+                    "DEMO_TOOL_ENV": "{{ MAO_PRIVATE_VARIABLE }}",
+                    "DEMO_TOOL_ENV_NON_PRIVATE": "foo.bar"
+                },
+                "cmd": [
+                    "sh",
+                    "-c",
+                    "wget https://github.com/argoproj/argo-cd/archive/refs/heads/master.zip && unzip master.zip -d /usr/src/app/data"
+                ],
+                "docker_socket": false,
+                "input_dataset": null,
+                "output_dataset": "mao-demo-dataset"
+            },
+            {
+                "name": "assessment",
+                "tool": "skan",
+                "env": {
+                    "DEMO_TOOL_ENV": "foo.bar.env"
+                },
+                "cmd": [
+                    "manifest",
+                    "-f",
+                    "/usr/src/app/input/argo-cd-master",
+                    "-o",
+                    "json",
+                    "--outputfile",
+                    "/usr/src/app/data/output_argo.json"
+                ],
+                "docker_socket": false,
+                "input_dataset": "i-do-not-exist",
+                "output_dataset": "mao-demo2-dataset"
+            }
+        ]
     }
-}
+]
