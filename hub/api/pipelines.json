@@ -5,6 +5,7 @@
         "steps": [{
                 "name": "acquisition",
                 "tool": "performancetool",
+                "env": {},
                 "cmd": [],
                 "docker_socket": false,
                 "input_dataset": null,
