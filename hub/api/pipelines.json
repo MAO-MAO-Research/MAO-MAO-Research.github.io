@@ -1,5 +1,17 @@
 [
     {
+        "name": "system-performance",
+        "description": "Runs local code execution performance measurement.",
+        "steps": [{
+                "name": "acquisition",
+                "tool": "performancetool",
+                "cmd": [],
+                "docker_socket": false,
+                "input_dataset": null,
+                "output_dataset": "system-performance-dataset"
+            }]
+    },
+    {
         "name": "demo-pipeline-1-working-private",
         "description": "Runs the Skan tool for demoing purposes",
         "steps": [{
